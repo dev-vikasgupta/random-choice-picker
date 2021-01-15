@@ -31,7 +31,7 @@ function initRandomChoicePicker() {
   }
   const randomSelect = (data) => {
     console.log('Enter hit', data)
-    const noOfTimes = 10
+    const noOfTimes = 30
     const highlightTime = 100 // in ms
     const interval = setInterval(() => {
       const randomTag = pickRandomTag()
@@ -42,12 +42,11 @@ function initRandomChoicePicker() {
     }, noOfTimes)
     setTimeout(() => {
       clearInterval(interval)
-      unHighlightTagAll()
+      setTimeout(() => {
+        const randomTag = pickRandomTag()
+        highlightTag(randomTag)
+      }, highlightTime)
     }, noOfTimes * highlightTime)
-    setTimeout(() => {
-      const randomTag = pickRandomTag()
-      highlightTag(randomTag)
-    }, noOfTimes * highlightTime * 2)
   }
   const pickRandomTag = () => {
     const tags = tagsElm.childNodes
